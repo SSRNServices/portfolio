@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     console.log("Incoming request body:", body);
 
-    const response = await fetch("https://n8n.ssrn.online/webhook-test/portfolio", {
+    const response = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     clearTimeout(timeoutId);
-    
+
     if (error.name === 'AbortError') {
       console.error("API ERROR: Request to n8n timed out.");
       return NextResponse.json(
