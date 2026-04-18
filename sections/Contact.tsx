@@ -46,20 +46,20 @@ export const Contact = () => {
     setErrorMessage("");
 
     try {
-      const response = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: trimmedName,
           email: trimmedEmail,
+          subject: formData.subject,
           message: trimmedMessage,
-          source: "Portfolio Website",
-          timestamp: new Date().toISOString()
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to connect to the server. Please try again later.");
+        const data = await response.json();
+        throw new Error(data.error || "Failed to send message. Please try again later.");
       }
 
       setStatus("success");
