@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 
     console.log("Incoming request body:", body);
 
-    const response = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
+    const response = await fetch("https://n8n.ssrn.online/webhook-test/portfolio", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
