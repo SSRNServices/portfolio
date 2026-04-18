@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, PhoneCall, MapPin, Send, MessageSquare, Loader2, CheckCircle2 } from "lucide-react";
+import { Container, Section } from "@/components/ui/Layout";
+import { Button } from "@/components/ui/Button";
+import { personalInfo } from "@/lib/data";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
