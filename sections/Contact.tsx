@@ -19,20 +19,47 @@ export const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validation
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!trimmedName) {
+      setErrorMessage("Name is required");
+      setStatus("error");
+      return;
+    }
+    if (!emailRegex.test(trimmedEmail)) {
+      setErrorMessage("Please enter a valid email address");
+      setStatus("error");
+      return;
+    }
+    if (trimmedMessage.length < 5) {
+      setErrorMessage("Message must be at least 5 characters long");
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
+          source: "Portfolio Website",
+          timestamp: new Date().toISOString()
+        }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || "Something went wrong");
+        throw new Error("Failed to connect to the server. Please try again later.");
       }
 
       setStatus("success");
