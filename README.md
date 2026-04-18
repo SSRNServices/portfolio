@@ -1,85 +1,36 @@
-![Logo](protfile/images/pf.png)
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# 🌐 Modern Portfolio Website
+## Getting Started
 
-A sleek, responsive, and interactive personal portfolio website built using **HTML**, **CSS**, and **JavaScript**.  
-Designed to showcase your skills, projects, and experience with elegant animations and smooth user interactions.
-
----
-
-## 🔗 Live Demo
-You can preview the portfolio locally by opening `index.html` in a modern browser.  
-Or access the online demo here: [Live Demo](https://dazzling-daffodil-0180fd.netlify.app/)
-
----
-
-## 🧰 Tools & Technologies
-| Category | Tools Used |
-|-----------|-------------|
-| **Frontend** | HTML5, CSS3, JavaScript (ES6) |
-| **Styling** | Flexbox, Grid, Transitions, Keyframes |
-| **Icons** | Font Awesome / Boxicons |
-| **Typography** | Google Fonts |
-| **Animations** | Vanilla JS + CSS Animations |
-| **Version Control** | Git & GitHub |
-| **Deployment** | GitHub Pages |
-
----
-
-## 🧠 Customization
-You can easily customize the project by:
-- Editing your name, bio, and project details in `index.html`
-- Changing theme colors and fonts in `style.css`
-- Replacing the logo in `profile/images/logo.png`
-- Adjusting typing speed, animation timing, and scroll effects in `script.js`
-
-> 💡 Tip: Update the meta description and keywords in the `<head>` tag of `index.html` for better SEO.
-
----
-
-## 📂 Project Structure
+First, run the development server:
 
 ```bash
-📦 modern-portfolio-website
- ┣ 📜 index.html          # Main HTML file
- ┣ 📜 style.css           # Website styling
- ┣ 📜 script.js           # Main JavaScript file
- ┣ 📂 assets              # Folder containing all assets
- ┃ ┣ 📂 images            # Images and logos
- ┃ ┣ 📂 icons             # SVGs or icons
- ┃ ┗ 📂 fonts             # Custom fonts (optional)
- ┗ 📜 README.md           # Project documentation
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
----
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚀 How to Run Locally
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/Saboo24/portfolio-website.git
-```
-### 2️⃣ Open the Folde
-```bash
-cd portfolio-website
-```
-3️⃣ Run the Website
-Open the file index.html directly in your browser — that’s it 🎉
-You’ll see your personal portfolio running locally
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 📬 Contact
+To learn more about Next.js, take a look at the following resources:
 
-- Email: aminehamzaoui1925@gmail.com   
-- Location: Boumerdès, Algeria  
-- LinkedIn: [LinkedIn](www.linkedin.com/in/mohamed-amine-hamzaoui-a2453a35b)  
-- GitHub: [GitHub](https://github.com/Saboo24)  
-- Instagram: [Instagram](https://www.instagram.com/a__m.i.n__e/?utm_source=ig_web_button_share_sheet)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Made with ❤️ by **Amine Hamzaoui**
+## Deploy on Vercel
 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
