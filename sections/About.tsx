@@ -26,7 +26,7 @@ export const About = () => {
               
               <Image
                 src="/images/img.jpg"
-                alt="About Amine"
+                alt="About SSRN Services"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                 className="object-cover rounded-2xl shadow-xl p-2"

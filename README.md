@@ -1,7 +1,7 @@
 # 🌌 Modern Developer Portfolio v2.0
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/render?type=soft&color=auto&height=200&section=header&text=Amine%20Codes&fontSize=70" />
+  <img src="https://capsule-render.vercel.app/render?type=soft&color=auto&height=200&section=header&text=SSRN%20Services&fontSize=70" />
 </div>
 
 <div align="center">
@@ -103,7 +103,7 @@ The project has been migrated and the original files are preserved for historica
 ---
 
 <div align="center">
-  <p>Designed with precision by <strong>Amine Codes</strong></p>
+  <p>Designed with precision by <strong>SSRN Services</strong></p>
   <p>
     <a href="https://github.com/SSRNServices/portfolio"><img src="https://img.shields.io/github/stars/SSRNServices/portfolio?style=social" /></a>
   </p>

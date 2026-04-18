@@ -9,12 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: `${personalInfo.fullName} | Senior Web Developer`,
   description: personalInfo.description,
-  keywords: ["Web Developer", "React", "Next.js", "Portfolio", "Amine Codes"],
+  keywords: ["Web Developer", "React", "Next.js", "Portfolio", "SSRN Services", "Backend Development", "AI Solutions"],
   authors: [{ name: personalInfo.fullName }],
   openGraph: {
     title: personalInfo.fullName,
     description: personalInfo.description,
-    url: "https://amine-codes.vercel.app",
+    url: "https://ssrn.online",
     siteName: personalInfo.fullName,
     locale: "en_US",
     type: "website",

@@ -18,8 +18,8 @@ export const personalInfo = {
   fullName: "SSRN Services",
   greeting: "👋 Hello there!",
   role: "Web Developer",
-  description: "I'm Amine, a passionate Software Developer who enjoys understanding how systems work — from low-level logic circuits to high-level applications. With solid experience in Java, C, and modern web technologies, I aim to create efficient, reliable, and scalable software that combines logic and creativity.",
-  location: "Boudouaou, Boumerdès, Algerie",
+  description: "SSRN Services specializes in building high-performance web applications, scalable backend systems, and AI-driven automation tools. We focus on delivering efficient, reliable, and innovative software solutions that help businesses scale through technology.",
+  location: "India",
   email: "support@ssrn.online",
   phone: "+91 892 002 4002",
   experience: "2+",
@@ -86,7 +86,7 @@ export const skills = [
 export const services = [
   {
     title: "Web Development",
-    description: "I create responsive, modern websites using the latest technologies and best practices. From concept to deployment, I ensure your website looks great and performs perfectly.",
+    description: "We create responsive, modern websites using the latest technologies and best practices. From concept to deployment, we ensure your website looks great and performs perfectly.",
     icon: Code2,
     features: ["Responsive Design", "Performance Optimized", "SEO Friendly"]
   },
@@ -98,13 +98,13 @@ export const services = [
   },
   {
     title: "UI/UX Design",
-    description: "Designing intuitive and beautiful user interfaces that provide exceptional user experiences. I focus on usability, accessibility, and visual appeal.",
+    description: "Designing intuitive and beautiful user interfaces that provide exceptional user experiences. We focus on usability, accessibility, and visual appeal.",
     icon: Palette,
     features: ["User-Centered", "Modern Design", "Accessibility"]
   },
   {
     title: "Performance Optimization",
-    description: "Optimizing websites and applications for speed, scalability, and reliability. I ensure your digital products perform at their best under any conditions.",
+    description: "Optimizing websites and applications for speed, scalability, and reliability. We ensure your digital products perform at their best under any conditions.",
     icon: Rocket,
     features: ["Fast Loading", "Scalable", "Reliable"]
   },
@@ -116,7 +116,7 @@ export const services = [
   },
   {
     title: "API Development",
-    description: "Creating robust and scalable APIs that power your applications. I build RESTful and GraphQL APIs with proper documentation and testing.",
+    description: "Creating robust and scalable APIs that power your applications. We build RESTful and GraphQL APIs with proper documentation and testing.",
     icon: Settings,
     features: ["RESTful APIs", "GraphQL", "Documentation"]
   }

@@ -93,7 +93,7 @@ export const Hero = () => {
               
               <Image
                 src="/images/img.jpg"
-                alt="Amine"
+                alt="SSRN Services"
                 fill
                 sizes="(max-width: 768px) 300px, 450px"
                 className="object-cover rounded-3xl p-2"

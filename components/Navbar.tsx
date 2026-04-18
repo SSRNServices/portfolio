@@ -59,7 +59,7 @@ export const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="text-2xl font-black text-white"
         >
-          {personalInfo.name}<span className="text-blue-500">_codes.</span>
+          {personalInfo.name}<span className="text-blue-500">.</span>
         </motion.div>
 
         {/* Desktop Links */}
