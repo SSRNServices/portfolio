@@ -14,21 +14,21 @@ import {
 } from "lucide-react";
 
 export const personalInfo = {
-  name: "Amine",
-  fullName: "Amine Codes",
+  name: "SSRN Services",
+  fullName: "SSRN Services",
   greeting: "👋 Hello there!",
   role: "Web Developer",
   description: "I'm Amine, a passionate Software Developer who enjoys understanding how systems work — from low-level logic circuits to high-level applications. With solid experience in Java, C, and modern web technologies, I aim to create efficient, reliable, and scalable software that combines logic and creativity.",
   location: "Boudouaou, Boumerdès, Algerie",
-  email: "amine_codes@example.com",
-  phone: "+221 00 11 22 33 44",
+  email: "support@ssrn.online",
+  phone: "+91 892 002 4002",
   experience: "2+",
-  whatsapp: "+00 11 22 33 44",
+  whatsapp: "+91 892 002 4002",
   socials: [
-    { name: "GitHub", icon: Code2, href: "https://github.com", color: "hover:text-gray-400" },
-    { name: "LinkedIn", icon: User, href: "https://linkedin.com", color: "hover:text-blue-500" },
-    { name: "Instagram", icon: Camera, href: "https://instagram.com", color: "hover:text-pink-500" },
-    { name: "WhatsApp", icon: PhoneCall, href: "https://wa.me/0011223344", color: "hover:text-green-500" },
+    { name: "GitHub", icon: Code2, href: "https://github.com/SSRNServices", color: "hover:text-gray-400" },
+    { name: "LinkedIn", icon: User, href: "https://linkedin.com/SSRNServices", color: "hover:text-blue-500" },
+    { name: "Instagram", icon: Camera, href: "https://instagram.com/SSRNServices", color: "hover:text-pink-500" },
+    { name: "WhatsApp", icon: PhoneCall, href: "https://wa.me/+918920024002", color: "hover:text-green-500" },
   ],
   stats: [
     { label: "Projects Completed", value: "30+" },
