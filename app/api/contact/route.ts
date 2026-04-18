@@ -1,50 +1,64 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+
   try {
-    const { name, email, subject, message } = await req.json();
+    const body = await req.json();
 
-    // Basic validation
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
+    console.log("Incoming request body:", body);
 
-    // Forward to n8n Webhook (Server-to-Server call, bypassing CORS)
-    const n8nResponse = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
+    const response = await fetch("https://n8n.ssrn.online/webhook/portfolio", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name,
-        email,
-        subject: subject || "Project Inquiry",
-        message,
-        source: "Portfolio Website (Proxy)",
-        timestamp: new Date().toISOString()
-      }),
+      body: JSON.stringify(body),
+      signal: controller.signal,
     });
 
-    if (!n8nResponse.ok) {
-      const errorText = await n8nResponse.text();
-      console.error("n8n Webhook Error:", errorText);
+    clearTimeout(timeoutId);
+
+    const text = await response.text();
+
+    console.log("n8n status:", response.status);
+    console.log("n8n response text:", text);
+
+    if (!response.ok) {
       return NextResponse.json(
-        { error: "Failed to forward message to the automation server." },
-        { status: 502 }
+        {
+          error: "n8n webhook failed",
+          status: response.status,
+          details: text,
+        },
+        { status: 502 } // Return 502 to mirror the upstream issue
       );
     }
 
     return NextResponse.json(
-      { message: "Message sent successfully via proxy" },
+      { success: true, message: "Automation triggered successfully" },
       { status: 200 }
     );
-  } catch (error) {
-    console.error("Proxy API Error:", error);
+
+  } catch (error: any) {
+    clearTimeout(timeoutId);
+    
+    if (error.name === 'AbortError') {
+      console.error("API ERROR: Request to n8n timed out.");
+      return NextResponse.json(
+        { error: "The request to n8n timed out. Ensure the workflow is active and fast." },
+        { status: 504 }
+      );
+    }
+
+    console.error("API ERROR:", error);
+
     return NextResponse.json(
-      { error: "Internal server error. Please try again later." },
+      {
+        error: "Server encountered an error while proxying to n8n",
+        details: error.message,
+      },
       { status: 500 }
     );
   }
