@@ -1,13 +1,51 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Mail, PhoneCall, MapPin, Send, MessageSquare } from "lucide-react";
-import { Container, Section } from "@/components/ui/Layout";
-import { Button } from "@/components/ui/Button";
-import { personalInfo } from "@/lib/data";
+import { useState } from "react";
+import { Mail, PhoneCall, MapPin, Send, MessageSquare, Loader2, CheckCircle2 } from "lucide-react";
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      setStatus("error");
+      setErrorMessage(error.message || "Failed to send message");
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <Section id="contact" className="bg-slate-950 text-white">
       <Container>
@@ -22,19 +60,19 @@ export const Contact = () => {
               Let's <span className="text-blue-500">Connect</span> & Build Something Great.
             </h2>
             <p className="text-gray-400 text-lg mb-12 max-w-lg">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
+              SSRN Services is always open to discussing new projects, creative ideas or opportunities to be part of your visions.
             </p>
 
             <div className="space-y-8">
               <ContactInfoItem 
                 icon={<Mail className="text-blue-500" />} 
-                title="Email Me" 
+                title="Email Us" 
                 value={personalInfo.email} 
                 href={`mailto:${personalInfo.email}`}
               />
               <ContactInfoItem 
                 icon={<PhoneCall className="text-blue-500" />} 
-                title="Call Me" 
+                title="Call Us" 
                 value={personalInfo.phone} 
                 href={`tel:${personalInfo.phone}`}
               />
@@ -60,48 +98,100 @@ export const Contact = () => {
             viewport={{ once: true }}
             className="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] shadow-2xl"
           >
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid md:grid-cols-2 gap-6">
+            {status === "success" ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="h-full flex flex-col items-center justify-center text-center py-12"
+              >
+                <CheckCircle2 size={80} className="text-green-500 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Message Sent!</h3>
+                <p className="text-gray-400 mb-8">
+                  Thank you for reaching out. SSRN Services will get back to you shortly.
+                </p>
+                <Button 
+                  onClick={() => setStatus("idle")}
+                  variant="outline"
+                  className="rounded-xl"
+                >
+                  Send Another Message
+                </Button>
+              </motion.div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Full Name</label>
+                    <input 
+                      required
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      type="text" 
+                      placeholder="John Doe" 
+                      className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Email Address</label>
+                    <input 
+                      required
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      type="email" 
+                      placeholder="john@example.com" 
+                      className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white"
+                    />
+                  </div>
+                </div>
+
                 <div className="space-y-2">
-                  <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Full Name</label>
+                  <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Subject</label>
                   <input 
+                    required
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     type="text" 
-                    placeholder="John Doe" 
+                    placeholder="Project Inquiry" 
                     className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white"
                   />
                 </div>
+
                 <div className="space-y-2">
-                  <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Email Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com" 
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white"
+                  <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Message</label>
+                  <textarea 
+                    required
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5} 
+                    placeholder="Tell us about your project..." 
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white resize-none"
                   />
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Subject</label>
-                <input 
-                  type="text" 
-                  placeholder="Project Inquiry" 
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white"
-                />
-              </div>
+                {status === "error" && (
+                  <p className="text-red-500 text-sm font-bold bg-red-500/10 p-4 rounded-xl border border-red-500/20">
+                    {errorMessage}
+                  </p>
+                )}
 
-              <div className="space-y-2">
-                <label className="text-xs font-black uppercase tracking-widest text-gray-500 ml-1">Message</label>
-                <textarea 
-                  rows={5} 
-                  placeholder="Tell me about your project..." 
-                  className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-white resize-none"
-                />
-              </div>
-
-              <Button size="lg" className="w-full gap-2 py-6 rounded-2xl">
-                Send Message <Send size={20} />
-              </Button>
-            </form>
+                <Button 
+                  disabled={status === "loading"}
+                  type="submit"
+                  size="lg" 
+                  className="w-full gap-2 py-6 rounded-2xl"
+                >
+                  {status === "loading" ? (
+                    <>Sending... <Loader2 className="animate-spin" size={20} /></>
+                  ) : (
+                    <>Send Message <Send size={20} /></>
+                  )}
+                </Button>
+              </form>
+            )}
           </motion.div>
         </div>
       </Container>
